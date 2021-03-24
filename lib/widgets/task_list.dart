@@ -9,12 +9,17 @@ class TasksList extends StatelessWidget {
     return Consumer<TaskData>(
       builder: (context, taskData, child) {
         return ListView.builder(
+          padding:
+              EdgeInsets.only(left: 30.0, right: 30.0, top: 15.0, bottom: 15.0),
           itemBuilder: (context, index) {
             return TaskTile(
               name: taskData.getTaskTitle(index),
               checked: taskData.isTaskDone(index),
               onChanged: (newValue) {
                 taskData.toggleTaskState(index);
+              },
+              onLongPressed: () {
+                taskData.removeTaskAt(index);
               },
             );
           },

@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 
 class TaskTile extends StatelessWidget {
-  TaskTile({this.name, this.checked, this.onChanged});
+  TaskTile({this.name, this.checked, this.onChanged, this.onLongPressed});
 
   final String name;
   final bool checked;
   final Function onChanged;
+  final Function onLongPressed;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(left: 30.0, right: 30.0),
-      child: Row(
-        //mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Expanded(
+    return Row(
+      //mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        Expanded(
+          child: GestureDetector(
+            onLongPress: onLongPressed,
             child: Text(
               '$name',
               style: TextStyle(
@@ -26,13 +27,13 @@ class TaskTile extends StatelessWidget {
               ),
             ),
           ),
-          Checkbox(
-            value: checked,
-            activeColor: Colors.lightBlueAccent,
-            onChanged: onChanged,
-          ),
-        ],
-      ),
+        ),
+        Checkbox(
+          value: checked,
+          activeColor: Colors.lightBlueAccent,
+          onChanged: onChanged,
+        ),
+      ],
     );
   }
 }

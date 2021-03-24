@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:todoey/models/task.dart';
-import 'dart:collection';
 
 class TaskData extends ChangeNotifier {
   List<Task> _tasks = [];
@@ -36,6 +35,11 @@ class TaskData extends ChangeNotifier {
       _tasks[index].isDone = !_tasks[index].isDone;
       notifyListeners();
     }
+  }
+
+  void removeTaskAt(int index) {
+    _tasks.removeAt(index);
+    notifyListeners();
   }
 
   void removeTask(Task removingTask) {
